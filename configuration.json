@@ -1,0 +1,119 @@
+{
+	"device_type": [
+		"Sensor Controller",
+		"Temp & Humid",
+		"Dust",
+		"Gas",
+		"EV_IO",
+		"PWM",
+		"Battery",
+		"Power monitor",
+		"Relay",
+		"3 Relay",
+		"Display"
+	],
+	"device_type_to_device_name": {
+		"Sensor Controller": [
+			"XBEE Sensor controller",
+			"nRF52840 Sensor controller"
+		],
+		"Temp & Humid": [
+			"STM8 + SHT20 waterproof",
+			"STM32 + SHT40"
+		],
+		"Dust": [
+			"STM8 + PMS7003",
+			"STM32 + SN - GCJA5"
+		],
+		"Gas": [
+			"STM8 + MH - Z19",
+			"STM32 + BME688",
+			"STM32 + SCD40 - D - R1"
+		],
+		"EV_IO": [
+			"Lifting",
+			"Seat belt"
+		],
+		"PWM": [
+			"EV rotary encoder",
+			"xoee + PIC16F - 100",
+			"xoee + FEOS",
+			"nRF52840 + FF100",
+			"nRF52840 + FE05"
+		],
+		"Battery": [
+			"EV battery"
+		],
+		"Power monitor": [
+			"STM32 + Actuator current sensor"
+		],
+		"Relay": [
+			"Xbee + ActuatorController rev.B",
+			"Xbee + ActuatorController rev.C / C1",
+			"nRF52840 + 1CH Actuator"
+		],
+		"3 Relay": [
+			"Xbee + 3CH Actuator rev V1",
+			"nRF52840 + 3CH Actuator"
+		],
+		"Display": [
+			"Smart Display"
+		]
+	},
+	"device_name_to_index": {
+		"XBEE Sensor controller": "0_0",
+		"nRF52840 Sensor controller": "0_3",
+		"STM8 + SHT20 waterproof": "8_1",
+		"STM32 + SHT40": "8_2",
+		"STM8 + PMS7003": "10_1",
+		"STM32 + SN - GCJA5": "10_2",
+		"STM8 + MH - Z19": "12_1",
+		"STM32 + BME688": "12_2",
+		"STM32 + SCD40 - D - R1": "12_3",
+		"Lifting": "20_1",
+		"Seat belt": "20_2",
+		"EV rotary encoder": "22_1",
+		"EV battery": "24_1",
+		"STM32 + Actuator current sensor": "24_2",
+		"Xbee + ActuatorController rev.B": "130_1",
+		"Xbee + ActuatorController rev.C / C1": "130_2",
+		"nRF52840 + 1CH Actuator": "130_3",
+		"Xbee + 3CH Actuator rev V1": "134_2",
+		"nRF52840 + 3CH Actuator": "134_3",
+		"xoee + PIC16F - 100": "136_1",
+		"xoee + FEOS": "136_2",
+		"nRF52840 + FF100": "136_3",
+		"nRF52840 + FE05": "136_4",
+		"Smart Display": "99_1"
+	},
+    "location" : ["Indoor",
+    "Outdoor",
+    "Attic"],
+	"controller_type": [
+		"sc_indoor",
+		"sc_outdoor",
+		"sc_attic",
+		"ac_srtv",
+		"ac_cv",
+		"battery_huawei",
+		"ac_supply",
+		"inverter_uno",
+		"inverter_trio",
+		"inverter_pvi",
+		"inverter_pvs",
+		"inverter_sun2000_3ktl-l1",
+		"inverter_sun2000_5ktl-l1",
+		"inverter_sun2000_5ktl-m1",
+		"inverter_sun2000_10ktl-m1",
+		"inverter_sun2000_15ktl-m2",
+		"inverter_sun2000_20ktl-m2",
+		"inverter_sun2000_30ktl-m3",
+		"meter_react",
+		"meter_lovato",
+		"meter_ddsu666",
+		"meter_dtsu666",
+		"meter_m4m_tcp",
+		"dummy",
+		"tuya"
+	]
+}
