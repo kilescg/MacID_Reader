@@ -37,6 +37,25 @@ def JLink_Power_On():
     jlink_process.stderr.close()
     jlink_process.wait()
 
+def JLink_Program_Flash(hex_name):
+    # Define the nrfjprog command you want to run
+    command = f"nrfjprog -f nrf52 --program {hex_name} --sectorerase --verify"
+    is_ok = 0
+
+    # Run the command and capture the return code
+    try:
+        result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if "done" in result.stdout:
+            is_ok = 1
+        else:
+            is_ok = 0
+        
+    except Exception as e:
+        print("Cant Read macID with jprog")
+        print("An error occurred:", e)
+    return is_ok
+
+
 if __name__ == "__main__":
     # JLink_Power_On()
     MAC_ID_Check()

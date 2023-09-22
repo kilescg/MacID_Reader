@@ -29,6 +29,7 @@ def ComboBoxInitialize(ui):
     controller_type = combo_box_json["controller_type"]
     for option in controller_type:
         ui.controllerTypeComboBox.addItem(option)
+    HexFileComboBoxClick_Event(ui)
 
 def ConnectUiWithFunction(ui):
     '''
@@ -39,10 +40,12 @@ def ConnectUiWithFunction(ui):
     ui.addDeviceButton.clicked.connect(lambda : AddDevice_Event(ui))
     ui.printNowButton.clicked.connect(lambda : PrintNow_Event(ui))
     ui.clearListButton.clicked.connect(lambda : ClearList_Event(ui))
+    ui.flashButton.clicked.connect(lambda : Flash_Event(ui))
     '''
     Combo Box
     '''
     ui.deviceTypeComboBox.currentIndexChanged.connect(lambda index, ui=ui: (DeviceNameUpdate_Event(ui)))
+    ui.hexFileComboBox.activated.connect(lambda index, ui=ui: (HexFileComboBoxClick_Event(ui)))
 
 def ReadMacButton_Event(ui):
     mac_id = jlink.MAC_ID_Check()
@@ -51,6 +54,34 @@ def ReadMacButton_Event(ui):
     else:
         ui.macStatuslabel.setText("Read Mac Status : <span style=\"color:red\">Fail</span></p>")
     ui.macIDShowLabel.setText(mac_id)
+
+def HexFileComboBoxClick_Event(ui):
+    hex_files_folder = "hex_files"
+        
+    # Clear the current items in the combobox
+    currentText = ui.hexFileComboBox.currentText()
+    ui.hexFileComboBox.clear()
+
+    # Check if the folder exists
+    if os.path.exists(hex_files_folder) and os.path.isdir(hex_files_folder):
+        # Get a list of file names in the folder
+        file_names = os.listdir(hex_files_folder)
+        
+        # Filter out only the files (not directories) and add them to the combobox
+        for file_name in file_names:
+            file_path = os.path.join(hex_files_folder, file_name)
+            if os.path.isfile(file_path):
+                ui.hexFileComboBox.addItem(file_name)
+                ui.hexFileComboBox.setCurrentText(currentText)
+
+
+def Flash_Event(ui):
+    result = jlink.JLink_Program_Flash(os.path.join("hex_files", ui.hexFileComboBox.currentText()))
+    if result:
+        ui.macStatuslabel.setText("Flash Status : <span style=\"color:green\">Success</span></p>")
+    else:
+        ui.macStatuslabel.setText("Flash Status : <span style=\"color:red\">Fail</span></p>")
+
 
 def AddDevice_Event(ui):
     # getting user setting
