@@ -23,6 +23,8 @@ pip install cs50
 
 - **Upcoming Features:** While SQLite functionality is currently not implemented, it is planned as a future enhancement.
 
+- **Upcoming Features:** The Flashing Button currently does not update its status. This will be addressed once I'm back in the office.
+
 - **Printing:** The printing functionality is not yet implemented in the main tool but can be found in the `utils.py` file. The specific function you can use for printing is `PrintNow()`.
 
 ## Usage
