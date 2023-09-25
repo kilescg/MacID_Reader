@@ -8,6 +8,8 @@ from utils import *
 import log 
 import threading
 
+print_list = []
+
 def thread_callback(ui):
         result = jlink.JLink_Program_Flash(os.path.join("hex_files", ui.hexFileComboBox.currentText()))
         if result:
@@ -15,17 +17,12 @@ def thread_callback(ui):
         else:
             ui.flashStatusLabel.setText("Flash Status : <span style=\"color:red\">Fail</span></p>")
 
-
 header = ['macID', 'deviceType', 'deviceName', 'Location', 'Controller Type']
 json_file = open("configuration.json")
 combo_box_json = json.load(json_file)
 
 def setTableHeader(ui):
-    file_path = "database/employee_file.csv"
-    if os.path.exists(file_path) and os.path.isfile(file_path):
-        log.ShowTableFromCSV(ui.devicesForPrintTableView)
-    else:
-        PopulateTableView(ui.devicesForPrintTableView, header, [])
+    PopulateTableView(ui.devicesForPrintTableView, header, [])
     PopulateTableView(ui.devicesDBTableView, header, [])
     
 def ComboBoxInitialize(ui):
@@ -89,9 +86,9 @@ def Flash_Event(ui):
     thr.start()
     ui.flashStatusLabel.setText("Flash Status : <span style=\"color:yellow\">In Progress</span></p>")
 
-
 def AddDevice_Event(ui):
     # getting user setting
+    global print_list
     mac_id = ui.macIDShowLabel.text()
     if mac_id == "":
         return
@@ -101,21 +98,24 @@ def AddDevice_Event(ui):
     controller_type = ui.controllerTypeComboBox.currentText()
     device_type_index = combo_box_json["device_name_to_index"][device_name]
     mac_id = device_type_index + "_" + mac_id
-    is_mac_id_duplicated = log.IsStringInCsv(mac_id, "macID")
+    is_mac_id_duplicated = any(inner_list and inner_list[0] == mac_id for inner_list in print_list)
 
-    # AddDataToTableView(ui.devicesForPrintTableView, [mac_id, device_type, device_name, location, controller_type])
     if not is_mac_id_duplicated:
-        log.WriteCSV(mac_id, device_type, device_name, location, controller_type)
-        log.ShowTableFromCSV(ui.devicesForPrintTableView)
+        print_list.append([mac_id, device_type, device_name, location, controller_type])
+        PopulateTableView(ui.devicesForPrintTableView, header, print_list)
 
-        log.CheckIfReachMaxLabel(ui, 4)
+        if len(print_list) == 3:
+            log.WriteCsv(print_list)
+            ClearList_Event(ui);
 
 def ClearList_Event(ui):
-    log.ResetCSV()
-    PopulateTableView(ui.devicesForPrintTableView, header, [])
+    global print_list
+    print_list = []
+    PopulateTableView(ui.devicesForPrintTableView, header, print_list)
     
 def PrintNow_Event(ui):
-    PrintLabel()
+    # todo
+    log.WriteCsv(print_list)
     ClearList_Event(ui)
 
 def DeviceNameUpdate_Event(ui):

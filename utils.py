@@ -29,7 +29,3 @@ def AddDataToTableView(tableView, newData):
         model.appendRow(item_list)
             
     tableView.resizeColumnsToContents()
-            
-def PrintLabel():
-    print("Printing!")
-    pass

@@ -1,59 +1,34 @@
 import csv
 import os
 import sqllite_interface
-from utils import PopulateTableView, PrintLabel
+from utils import PopulateTableView
 
 file_path = "database/devices.csv"
 fieldnames = ['macID', 'deviceType', 'deviceName', 'Location', 'Controller Type']
 
-def WriteCSV(mac_id, deviceType, deviceName, location, controllerType):    
-    new_row = {"macID" : mac_id, 
-                             "deviceType" : deviceType, 
-                             "deviceName" : deviceName, 
-                             "Location" : location, 
-                             "Controller Type" : controllerType}
-    # Write data_list to the CSV file
-
-    try:
-        with open(file_path, 'r', newline='') as file:
-            # Read the existing data
-            data = list(csv.DictReader(file))
-    except FileNotFoundError:
-        # If the file doesn't exist, create it with headers and add the new row
-        with open(file_path, 'w', newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerow(new_row)
-    else:
-        # If the file exists, open it in append mode and add the new row
-        with open(file_path, 'a', newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
-            writer.writerow(new_row)
-
-def CheckIfReachMaxLabel(ui, maxLabel):
-    shouldRemove = 0
-    if os.path.exists(file_path) and os.path.isfile(file_path):
-        with open(file_path, "r+") as csvfile:
-            csvreader = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
-            num_rows = len(list(csvreader))
-            if num_rows == maxLabel:
-                '''
-                Sent to database (WIP)
-                '''
-                PrintLabel()
-                shouldRemove = 1
-                PopulateTableView(ui.devicesForPrintTableView, fieldnames, [])
-    if shouldRemove:
+def WriteCsv(data_list):
+    # Check if the output file already exists and delete it
+    if os.path.exists(file_path):
+        print("deleting csv")
         os.remove(file_path)
+    print("writing new csv")
 
-def ResetCSV():
-    try:
-        if os.path.exists(file_path):
-            # Delete the file
-            os.remove(file_path)
-            print(f"Deleted {file_path}")
-    except Exception as e:
-        print(f"Error: {str(e)}")
+
+    # Open the CSV file for writing
+    with open(file_path, 'w', newline='') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        # Write the header row
+        writer.writeheader()
+
+        # Write data rows
+        for inner_list in data_list:
+            if len(inner_list) == len(fieldnames):
+                # Create a dictionary by zipping fieldnames and inner_list
+                data_dict = dict(zip(fieldnames, inner_list))
+                writer.writerow(data_dict)
+            else:
+                print(f"Skipping invalid data: {inner_list}")
 
 def ShowTableFromCSV(table):
     showList = []
@@ -76,4 +51,12 @@ def IsStringInCsv(input_string, target_field_name):
     
 
 if __name__ == "__main__":
-    pass
+    data_list = [
+    ['1', 'Type1', 'Name1', 'Loc1', 'Ctrl1'],
+    ['2', 'Type2', 'Name2', 'Loc2', 'Ctrl2'],
+    # Add more data lists as needed
+    ]
+
+    output_filename = 'output.csv'
+
+    WriteCsv(data_list)
