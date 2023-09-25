@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'deviceAssigningTool.ui'
+# Form implementation generated from reading ui file '.\deviceAssigningTool.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -38,19 +38,13 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.seggerText.sizePolicy().hasHeightForWidth())
         self.seggerText.setSizePolicy(sizePolicy)
         self.seggerText.setMaximumSize(QtCore.QSize(180, 117))
-        self.seggerText.setPixmap(QtGui.QPixmap("img/SEGGER-Logo-the-embedded-experts-RGB.png"))
+        self.seggerText.setText("")
+        self.seggerText.setPixmap(QtGui.QPixmap(".\\img/SEGGER-Logo-the-embedded-experts-RGB.png"))
         self.seggerText.setScaledContents(True)
         self.seggerText.setAlignment(QtCore.Qt.AlignCenter)
         self.seggerText.setObjectName("seggerText")
         self.verticalLayout_6.addWidget(self.seggerText, 0, QtCore.Qt.AlignHCenter)
         self.powerOnButton = QtWidgets.QPushButton(self.groupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.powerOnButton.sizePolicy().hasHeightForWidth())
-        self.powerOnButton.setSizePolicy(sizePolicy)
-        self.powerOnButton.setMinimumSize(QtCore.QSize(0, 60))
-        self.powerOnButton.setMaximumSize(QtCore.QSize(413, 17))
         self.powerOnButton.setStyleSheet("QAbstractButton {\n"
 "    font-size: 16pt\n"
 "}")
@@ -63,13 +57,13 @@ class Ui_MainWindow(object):
 "    font-size: 10pt\n"
 "}")
         self.hexFilesLabel.setObjectName("hexFilesLabel")
-        self.horizontalLayout_2.addWidget(self.hexFilesLabel)
-        self.label_2 = QtWidgets.QLabel(self.groupBox)
-        self.label_2.setStyleSheet("QLabel {\n"
+        self.horizontalLayout_2.addWidget(self.hexFilesLabel, 0, QtCore.Qt.AlignBottom)
+        self.flashStatusLabel = QtWidgets.QLabel(self.groupBox)
+        self.flashStatusLabel.setStyleSheet("QLabel {\n"
 "    font-size: 10pt\n"
 "}")
-        self.label_2.setObjectName("label_2")
-        self.horizontalLayout_2.addWidget(self.label_2)
+        self.flashStatusLabel.setObjectName("flashStatusLabel")
+        self.horizontalLayout_2.addWidget(self.flashStatusLabel, 0, QtCore.Qt.AlignBottom)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         self.hexFileComboBox = QtWidgets.QComboBox(self.groupBox)
         self.hexFileComboBox.setStyleSheet("QComboBox {\n"
@@ -245,10 +239,9 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.groupBox.setTitle(_translate("MainWindow", "Console"))
-        self.seggerText.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">Segger Flasher!</span></p></body></html>"))
-        self.powerOnButton.setText(_translate("MainWindow", "Power On"))
-        self.hexFilesLabel.setText(_translate("MainWindow", "Please Choose Your Hex Files"))
-        self.label_2.setText(_translate("MainWindow", "Flash Status : None"))
+        self.powerOnButton.setText(_translate("MainWindow", "PowerOn"))
+        self.hexFilesLabel.setText(_translate("MainWindow", "Choose Your Hex Files"))
+        self.flashStatusLabel.setText(_translate("MainWindow", "Flash Status : None"))
         self.flashButton.setText(_translate("MainWindow", "Flash!"))
         self.devicesForPrintLabel.setText(_translate("MainWindow", "Devices For Label Printing (max 3 device)"))
         self.readMacButton.setText(_translate("MainWindow", "Read Mac"))

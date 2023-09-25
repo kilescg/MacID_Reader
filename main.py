@@ -78,9 +78,9 @@ def HexFileComboBoxClick_Event(ui):
 def Flash_Event(ui):
     result = jlink.JLink_Program_Flash(os.path.join("hex_files", ui.hexFileComboBox.currentText()))
     if result:
-        ui.macStatuslabel.setText("Flash Status : <span style=\"color:green\">Success</span></p>")
+        ui.flashStatusLabel.setText("Flash Status : <span style=\"color:green\">Success</span></p>")
     else:
-        ui.macStatuslabel.setText("Flash Status : <span style=\"color:red\">Fail</span></p>")
+        ui.flashStatusLabel.setText("Flash Status : <span style=\"color:red\">Fail</span></p>")
 
 
 def AddDevice_Event(ui):

@@ -47,7 +47,11 @@
             </size>
            </property>
            <property name="text">
+<<<<<<< HEAD
+            <string/>
+=======
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Segger Flasher!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+>>>>>>> 2c24f035bff74504262bec1d3eda08456d2f2fd1
            </property>
            <property name="pixmap">
             <pixmap>img/SEGGER-Logo-the-embedded-experts-RGB.png</pixmap>
@@ -62,31 +66,63 @@
          </item>
          <item>
           <widget class="QPushButton" name="powerOnButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>60</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>413</width>
-             <height>17</height>
-            </size>
-           </property>
            <property name="styleSheet">
             <string notr="true">QAbstractButton {
 	font-size: 16pt
 }</string>
            </property>
            <property name="text">
-            <string>Power On</string>
+            <string>PowerOn</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item alignment="Qt::AlignBottom">
+            <widget class="QLabel" name="hexFilesLabel">
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+	font-size: 10pt
+}</string>
+             </property>
+             <property name="text">
+              <string>Choose Your Hex Files</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignBottom">
+            <widget class="QLabel" name="flashStatusLabel">
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+	font-size: 10pt
+}</string>
+             </property>
+             <property name="text">
+              <string>Flash Status : None</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QComboBox" name="hexFileComboBox">
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	font-size: 10pt
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="flashButton">
+           <property name="styleSheet">
+            <string notr="true">QAbstractButton {
+	font-size: 16pt
+}</string>
+           </property>
+           <property name="text">
+            <string>Flash!</string>
            </property>
           </widget>
          </item>
