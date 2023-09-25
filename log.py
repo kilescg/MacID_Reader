@@ -3,7 +3,7 @@ import os
 import sqllite_interface
 from utils import PopulateTableView, PrintLabel
 
-file_path = "database/employee_file.csv"
+file_path = "database/devices.csv"
 fieldnames = ['macID', 'deviceType', 'deviceName', 'Location', 'Controller Type']
 
 def WriteCSV(mac_id, deviceType, deviceName, location, controllerType):    
