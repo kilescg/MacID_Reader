@@ -45,7 +45,8 @@ def JLink_Program_Flash(hex_name):
     # Run the command and capture the return code
     try:
         result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        if "done" in result.stdout:
+        print(result.stdout)
+        if "Verify file - Done verifying" in result.stdout:
             is_ok = 1
         else:
             is_ok = 0
