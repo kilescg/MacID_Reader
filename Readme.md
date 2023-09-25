@@ -21,11 +21,13 @@ pip install cs50
 
 - **MacID Reading:** The tool enables the reading of MacIDs using the Segger Flasher Pro, automatically printing the results after three reads. Additionally, you have the option to manually trigger printing using the *Print Now* function before reaching three reads.
 
-- **Upcoming Features:** While SQLite functionality is currently not implemented, it is planned as a future enhancement.
+## To-dos
 
-- **Upcoming Features:** The Flashing Button currently does not update its status. This will be addressed once I'm back in the office.
+- While SQLite functionality is currently not implemented, it is planned as a future enhancement.
 
-- **Printing:** The printing functionality is not yet implemented in the main tool but can be found in the `utils.py` file. The specific function you can use for printing is `PrintNow()`.
+- The Flashing Button currently does not update its status. This will be addressed once I'm back in the office.
+
+- The printing functionality is not yet implemented in the main tool but can be found in the `utils.py` file. The specific function you can use for printing is `PrintNow()`.
 
 ## Usage
 
